@@ -4,10 +4,12 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class PageGet : MonoBehaviour
+public class GetPageInput : MonoBehaviour
 {
 
     public LevelLoaderScript LevelLoaderScript;
+    public GameManager manager;
+
 
     public TMP_InputField input;
     int number;
@@ -15,7 +17,7 @@ public class PageGet : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        
+        manager = FindAnyObjectByType<GameManager>();
     }
 
     // Update is called once per frame
@@ -42,7 +44,6 @@ public class PageGet : MonoBehaviour
                 {number=244;}
         }
         
-
-        LevelLoaderScript.LoadALevel(number);
+        manager.Advance(number - 1);
     }
 }
