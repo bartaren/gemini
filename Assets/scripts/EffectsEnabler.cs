@@ -10,7 +10,7 @@ public class EffectsEnabler : MonoBehaviour
     void Awake()
     {
         EnableEffects = true;
-        Debug.Log(EnableEffects);
+        //Debug.Log(EnableEffects);
     }
 
     public void EffectsEnable()

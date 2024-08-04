@@ -13,46 +13,33 @@ public class LevelLoaderScript : MonoBehaviour
     public int MaxLevel;
 
     public int Level;
+    public GameManager manager;
 
     // Start is called before the first frame update
 
     // Update is called once per frame
 
+    private void Start() {
+        manager = FindAnyObjectByType<GameManager>();
+    }
+
     void Update()
     {
-        Level = SceneManager.GetActiveScene().buildIndex;
-        if (GlobalToggles.AddOnToggle == false)
-        {   
-            MinLevel = 1;
-            MaxLevel = 242;
-        }
-        else
-        {
-            MinLevel = 244;
-            MaxLevel = 361;
-        }
+        //Level = SceneManager.GetActiveScene().buildIndex;
 
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            if (Level == MaxLevel){}
-            else
-            {
-                LoadNextLevelNow();
-            }
+            manager.Advance(manager.currentI + 1);
         }
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))    
         {
-            if (Level == MinLevel){}
-            else
-            {
-                LoadPreviousLevelNow();
-            }
+            manager.Advance(manager.currentI - 1);
         }
 
-        Debug.Log("MinLevel is" + MinLevel);
-        Debug.Log("MaxLevel is" + MaxLevel);
-        Debug.Log("Level is" + Level);
+        //Debug.Log("MinLevel is" + MinLevel);
+        //Debug.Log("MaxLevel is" + MaxLevel);
+        //Debug.Log("Level is" + Level);
     }
 
     public void LoadAddOnLevel()
@@ -62,27 +49,18 @@ public class LevelLoaderScript : MonoBehaviour
 
     public void LoadNextLevel()
     {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        manager.Advance(manager.currentI + 1);
+        //StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
     public void LoadPreviousLevel()
     {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(SceneManager.GetActiveScene().buildIndex - 1);
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
+        manager.Advance(manager.currentI - 1);
+        //Debug.Log(SceneManager.GetActiveScene().buildIndex);
+        //Debug.Log(SceneManager.GetActiveScene().buildIndex - 1);
+        //StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex - 1));
     }
 
-    public void LoadNextLevelNow()
-    {
-        Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    public void LoadPreviousLevelNow()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
-    }
 
     IEnumerator LoadLevel(int levelIndex)
     {
@@ -119,7 +97,7 @@ public class LevelLoaderScript : MonoBehaviour
         crossfade.SetTrigger("Start");
         transition.SetTrigger("Start");
         yield return new WaitForSeconds(transitionTime);
-        SceneManager.LoadScene(243);
+        SceneManager.LoadScene("Main Menu");
     }
 
     public void LoadReplayA1()

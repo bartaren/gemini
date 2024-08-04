@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         //barmenu.worldCamera = Camera.main;
         //var canvaspanel = barmenu.transform.Find("Panel");
         //canvaspanel.position = new Vector3(0,-1000,0);
-        menu = FindAnyObjectByType<MenuBar>();
+        //menu = FindAnyObjectByType<MenuBar>();
         
         wipe = GameObject.Find("wipe").GetComponent<SpriteRenderer>();
         overlay = GameObject.Find("overlay").GetComponent<SpriteRenderer>();
@@ -91,14 +91,15 @@ public class GameManager : MonoBehaviour
                 return;
             }
             //int index = int.Parse(SceneManager.GetActiveScene().name);
-            SceneManager.LoadScene("MainMenu");
+            SceneManager.LoadScene("Replay Screen");
 
         } else {
             currentI = Mathf.Clamp(currentI, 0, panels.Count - 1);
-            menu.input.text = (currentI + 1).ToString();
+            //menu.input.text = (currentI + 1).ToString();
 
             panels[currentI].RevealPanel();
             Camera.main.transform.position = panels[currentI].transform.position + new Vector3(0,0,-10);
+            FindAnyObjectByType<FixThisThing>().inputfield.text = "" + (currentI + 1);
 
             if (backgroundaudio.isPlaying == false || backgroundaudio?.clip?.name  == "silence") {
                 for (int i = currentI; i >= 0; i--) {

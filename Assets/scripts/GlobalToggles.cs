@@ -30,6 +30,6 @@ public class GlobalToggles : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(AddOnToggle);
+        //Debug.Log(AddOnToggle);
     }
 }
