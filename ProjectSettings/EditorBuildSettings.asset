@@ -16,10 +16,7 @@ EditorBuildSettings:
     guid: 9c55b4c631c6daf4588acde9fa85128e
   - enabled: 1
     path: Assets/Scenes/2.unity
-    guid: 56023cd9d14bf0a45887b64437a0a19e
-  - enabled: 0
-    path: Assets/Scenes/MainMenu.unity
-    guid: e333520d8e82fab48855e68090751b2a
+    guid: ecca8d3df0d12df4d8a731f5d2cabe1d
   - enabled: 1
     path: Assets/Scenes/Replay Screen.unity
     guid: 2bb37f5694112844199bfaa920a587e3

@@ -10,6 +10,10 @@ public class FixThisThing : MonoBehaviour
     public TMP_InputField inputfield;
     public GameManager manager;
 
+    public Animator crossfade;
+    public Animator transition;
+    public float transitionTime;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,7 +25,7 @@ public class FixThisThing : MonoBehaviour
             manager.Advance(manager.currentI + 1);
         });
         GameObject.Find("Title Button").GetComponent<Button>().onClick.AddListener(() => {
-            SceneManager.LoadScene("Main Menu");
+            StartCoroutine(LoadLevel(1));
         });
 
         var background = GameObject.Find("Background");
@@ -41,6 +45,17 @@ public class FixThisThing : MonoBehaviour
 
         background.SetActive(false);
     }
+
+    IEnumerator LoadLevel(int level)
+    {
+        crossfade.SetTrigger("Start");
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        SceneManager.LoadScene(level);
+    }
+
 
     // Update is called once per frame
     void Update()

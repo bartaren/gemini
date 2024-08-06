@@ -88,6 +88,7 @@ public class GameManager : MonoBehaviour
         currentI = index;
         if (currentI >= panels.Count) {
             if (currentI > panels.Count) {
+                Advance(panels.Count - 1);
                 return;
             }
             //int index = int.Parse(SceneManager.GetActiveScene().name);
